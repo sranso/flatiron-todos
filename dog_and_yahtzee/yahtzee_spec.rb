@@ -16,9 +16,9 @@ describe "#roll_dice" do
 	# 	expect(roll_dice[0]).to be >= 1
 	# 	expect(roll_dice[0]).to be <=6
 	# end
-	it "each slot should be a number b/t 1-6" do
-		expect(roll_dice.sum).to be >= 5
-		expect(roll_dice.sum).to be <=30
+	it "sum of the slots should be b/t 5 and 30" do
+		expect(roll_dice.inject{|sum,x| sum + x}).to be >= 5
+		expect(roll_dice.inject{|sum,x| sum + x}).to be <=30
 	end
 end
 
