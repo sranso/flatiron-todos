@@ -48,9 +48,9 @@ end
 #   New Years: Party Hats
 
 holiday_supplies.each do |season, holidays|
-  puts season, ":"
+  puts "#{season.capitalize}:"
   holidays.each do |holiday, supplies|
-    print " ", holiday, ": "
+    print " #{holiday.capitalize}: "
     puts supplies.join(" and ")
   end
 end
