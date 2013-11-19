@@ -59,9 +59,6 @@ pigeon_data.each_pair do |key, value|
 end
 puts new_pigeon
 
-# ===NOTES===
-#top-level keys: color, gender, lives
-
 # =========MY ATTEMPT=============
 # pigeon_characteristics = Hash.new
 

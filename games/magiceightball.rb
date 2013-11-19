@@ -30,7 +30,7 @@ class MagicEightBall
 		answer = gets.chomp
 		if answer == "y"
 			puts "Nice. I had a good feeling about you. Think of a question."
-			sleep(6)
+			sleep(4)
 			puts "Got it? Okay, here is your answer..."
 			sleep(2)
 			puts @fortunes.sample
