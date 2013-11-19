@@ -13,6 +13,13 @@ class BlackJack
 	puts "I'm feeling dangerous. Let's play Blackjack."
 	puts "You in? (y/n)"
 
+	def initialize
+		@card1 = rand(1..11)
+		@card2 = rand(1..11)
+		@card3 = rand(1..11)
+		@card4 = rand(1..11)
+		@score = 0
+	end
 	def yes_or_no
 		text = gets.chomp
 		if text == "y"
@@ -27,45 +34,43 @@ class BlackJack
 	end
 
 	def hits
-		card1 = rand(1..11)
-		card2 = rand(1..11)
-		score1 = card1 + card2
-		puts "Here are your first two cards: #{card1} and #{card2}. Your total score is #{card1 + card2}."
-		if score1.to_i == 21
+		@score = @card1 + @card2
+		puts "Here are your first two cards: #{@card1} and #{@card2}. Your total score is #{@score}."
+		if @score.to_i == 21
 			puts "AHHH YOU WON SO EARLY IN THE GAME HOW'D YOU DO IT I QUIT"
 			return
 		end
 		puts "Would you like to hit or stay?"
 		text = gets.chomp
 		if text == "hit"
-			card3 = rand(1..11)
-			score2 = score1 + card3
-			puts "Your third card is #{card3} and your new score is #{score2}."
-			puts "Would you like to hit or stay?"
-			if score2.to_i > 21
+			@score = @score + @card3
+			puts "Your third card is #{@card3} and your new score is #{@score}."
+			if @score.to_i > 21
 				puts "Ruh roh, you're over 21. I win!"
 				return
-			elsif score2.to_i == 21
+			elsif @score.to_i == 21
 				puts "You win!"
 				return
 			end
+			puts "Would you like to hit or stay?"
 			text2 = gets.chomp
 			if text2 == "hit"
-				card4 = rand(1..11)
-				score3 = score2 + card4
-				puts "Your fourth and final card is #{card4} and your new score is #{score3}."
-				if score3.to_i > 21
+				@score = @score + @card4
+				puts "Your fourth and final card is #{@card4} and your new score is #{@score}."
+				if @score.to_i > 21
 					puts "Ruh roh, you're over 21. I win!"
 					return
-				elsif score3.to_i == 21
+				elsif @score.to_i == 21
 					puts "You win!"
 					return
 				end
-			elsif text == "stay"
-				puts "Okay."
+			elsif text2 == "stay"
+				puts "Okay. You didn't hit 21, so I win!"
+				return
 			end
 		elsif text == "stay"
-			puts "Okay."
+			puts "Okay. You didn't hit 21, so I win!!"
+			return
 		end	
 	end
 

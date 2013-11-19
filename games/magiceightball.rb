@@ -15,11 +15,13 @@ class MagicEightBall
 			"I don't drink whiskey!",
 			"Horton hatched an egg and you better believe it.",
 			"The truth lies within an egg-and-cheese biscuit.",
-			"Maybe you have bed bugs.",
+			"Call your landlord.",
 			"I can't believe you would ask me that question!",
 			"Hmm, Siri might be a better resource for you.",
 			"I'm not that kind of magic eight ball!",
-			"Bradley Cooper. Yeah, I said it."
+			"Bradley Cooper. Yeah, I said it.",
+			"Dancing in public is probably what you need.",
+			"A Tribe Called Quest."
 		]
 	end
 
