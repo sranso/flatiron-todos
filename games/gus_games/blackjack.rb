@@ -17,37 +17,65 @@
 #alter the game so that a player can "hit" as many times as they want.
 
 def card
-  1 + rand(11)
+	1 + rand(11)
 end
-        
 
-def blackjack
-  puts "This is blackjack."
-  card1 = card
-  card2 = card
-  total_cards = card1 + card2
-  puts "Your cards are #{card1} and #{card2}. It gives you the total of #{total_cards}."
+card1 = card
+card2 = card
+total_cards = card1 + card2
 
-  while total_cards < 21
-    puts "Do you want to hit or stay?"
-    answer = gets.chomp
-    if answer == "hit"
-      new_card = card 
-      total_cards += new_card
-      puts " Your new card is #{new_card} and now you have in your hand a total of #{total_cards}"
-    else
-      break
+def start card_a, card_b, card_total
+	puts "This is blackjack."
+	puts "Your cards are #{card_a} and #{card_b}. It gives you the total of #{card_total}."
+	when_equals_twentyone(card_total)
+end
+
+def while_under_twentyone card_total
+	while card_total < 21
+	    puts "Do you want to hit or stay?"
+	    card_total = hit_or_stay(card_total)
+	end
+	card_total
+end
+
+def hit_or_stay card_total
+	answer = gets.chomp
+	if answer == "hit"
+		new_card = card
+	    card_total += new_card
+	    puts "Your new card is #{new_card} and now you have in your hand a total of #{card_total}"
+	    when_equals_twentyone(card_total)
+	    when_over_twentyone(card_total)
+	else
+	    game_over_under_twentyone(card_total)
+	end
+	card_total
+end
+
+def when_over_twentyone card_total
+	if card_total > 21
+    	puts "You have more than 21 so you lose.."
+    	exit
+	end
+	card_total
+end
+
+def when_equals_twentyone card_total
+	if card_total == 21
+    	puts "You win!"
+    	exit
     end
-  end
-
-  if total_cards > 21
-    puts "You have more than 21 so you lose"
-  elsif total_cards == 21
-    puts "You win"
-  else
-    puts "You don't have 21 so you lose"
-  end
-
 end
 
-blackjack
+def game_over_under_twentyone card_total
+	puts "You don't have 21 so you lose!!"
+	exit
+end
+
+# start(card1, card2, total_cards)
+# while_under_twentyone(total_cards)
+# hit_or_stay(total_cards)
+# when_over_twentyone(total_cards)
+# when_equals_twentyone(total_cards)
+
+
