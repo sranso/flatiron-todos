@@ -11,7 +11,15 @@
 require './list_maker_solution'
 
 describe "#make_list" do
-	it "should" do
+	it "given array of str, should return an array of strings in a numbered list" do
 		expect(make_list(["ich", "ni", "san"])).to eq(["1. ich", "2. ni", "3. san"])
+	end
+
+	it "given array of ints, should return an array of strings in a numbered list" do
+		expect(make_list([1, 3, 5])).to eq(["1. 1", "2. 3", "3. 5"])
+	end
+
+	it "should take an array and return an array" do #bad thing to do?
+		expect(make_list([1, 3, 5])).to be_a(Array)
 	end
 end

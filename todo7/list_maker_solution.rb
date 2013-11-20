@@ -10,21 +10,28 @@
 
 def make_list(array)
 	array.collect! do |x|
-		"#{array.find_index(x)+1}. #{x}"
+		"#{array.find_index(x)+1}. #{x.to_s}"
 	end
 end
 
 
-puts make_list(["sarah", "peeps", "forever"])
+# puts make_list(["sarah", "peeps", "forever"])
+# puts make_list([1, 3, 5])
 
 
-# def make_list(array)
+#=====FIRST ATTEMPT..====
+# def make_list array
 # 	num = 1
-# 	while num <= array.length
-# 		array.collect! do |x|
-# 			puts "#{num}. #{x}"
-# 			num +=1
-# 		end
+# 	array.collect do |x|
+# 		num +=1
+# 		"#{num}. #{x}"
 # 	end
-# 	puts array
+# 	array
 # end
+
+#=====CLASS NOTES====
+# def make_list array
+# 	array.map.with_index { |item, index| (index+1).to_s.concat(". ").concat(item)}
+# end
+# puts make_list([1, 2, 3])
+

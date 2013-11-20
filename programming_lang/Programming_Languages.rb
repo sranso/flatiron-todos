@@ -1,3 +1,4 @@
+require "awesome_print"
 # Organizing Nested Data
 
 # I have a collection of Programming Languages.  
@@ -47,7 +48,7 @@ languages.each do |style, lang|#look at style and language
     end
   end
 end
-puts new_languages
+ap new_languages
 # I would like you to reformat the nested structure to be of the following form
 
 # {
