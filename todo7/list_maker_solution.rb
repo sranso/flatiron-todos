@@ -9,13 +9,22 @@
 # e.g make_list(["ich", "ni", "san"]) #=> ["1. ich", "2. ni", "3. san"]
 
 def make_list(array)
-	num = 0
 	array.collect! do |x|
-		while num <= array.length
-			"#{num}. #{x}"
-			num +=1
-		end
+		"#{array.find_index(x)+1}. #{x}"
 	end
 end
 
+
 puts make_list(["sarah", "peeps", "forever"])
+
+
+# def make_list(array)
+# 	num = 1
+# 	while num <= array.length
+# 		array.collect! do |x|
+# 			puts "#{num}. #{x}"
+# 			num +=1
+# 		end
+# 	end
+# 	puts array
+# end
