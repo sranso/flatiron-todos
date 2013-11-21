@@ -19,7 +19,8 @@ class Deli
         queue.drop(1)
         i = 0
         queue.each do |name|
-            name.gsub(/\d/)
+            i += 1
+            name.gsub(/\d/, i)
         end
     end
 

@@ -10,7 +10,7 @@ describe Deli do
    end
 
    describe "#now_serving" do
-    it "should" do
+    it "should return a new array without the first person in line, and updating everyone else's number" do
         expect(sarah.now_serving(["1. sarah", "2. keith", "3. kate"])).to eq(["1. keith", "2. kate"])
     end
    end
