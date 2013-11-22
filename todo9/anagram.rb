@@ -10,19 +10,23 @@
 # http://stackoverflow.com/questions/1274675/ruby-what-does-warray-mean
 
 class Anagram
-  
-  attr_accessor :word, :string
 
   def initialize(word)
     @word = word
   end
 
   def match(array)
-    :word.to_s.include? array.to_s
+    new_array = []
+    array.collect do |item|
+        if item.chars.sort == @word.chars.sort
+            new_array << item
+        end
+    end
+    new_array
   end
 
 end
 
-newses = Anagram.new("enlists")
+# newses = Anagram.new("listen")
 
-puts newses.match(%w(enlists google inlets banana))
+# puts newses.match(%w(enlists word inlets banana))
