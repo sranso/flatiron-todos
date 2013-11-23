@@ -4,7 +4,7 @@ sarah = Deli.new
 
 describe Deli do
    describe "#take_a_number" do
-    it "should" do
+    it "should add a number in front of each person in line" do
        expect(sarah.take_a_number(["sarah", "keith", "kate"])).to eq(["1. sarah", "2. keith", "3. kate"])
     end
    end

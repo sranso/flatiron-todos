@@ -16,11 +16,11 @@ class Deli
     end
 
     def now_serving(queue)
-        queue.drop(1)
+        queue.shift
         i = 0
-        queue.each do |name|
-            i += 1
-            name.gsub(/\d/, i)
+        queue.collect do |name|
+            i +=1
+            name.gsub(name[0], i.to_s)
         end
     end
 
