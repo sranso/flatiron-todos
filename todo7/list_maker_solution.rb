@@ -9,7 +9,7 @@
 # e.g make_list(["ich", "ni", "san"]) #=> ["1. ich", "2. ni", "3. san"]
 
 def make_list(array)
-	array.collect! do |x|
+	array.collect do |x|
 		"#{array.find_index(x)+1}. #{x.to_s}"
 	end
 end
