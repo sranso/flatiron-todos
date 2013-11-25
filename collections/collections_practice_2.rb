@@ -33,7 +33,12 @@ p new_array(captain_planet).compact
 # 3. Identify the first element in the stuff array that begins with the letters "wa".
 stuff = ["candy", :pepper, "wall", :ball, "wacky"]
 def first_starts_wa(array)
-  
+  array.each do |item|
+    if item[0..1] == "wa"
+      return item
+      exit
+    end
+  end
 end
 p first_starts_wa(stuff)
 
@@ -50,6 +55,14 @@ p starts_wa(stuff).compact
 
 # 5. Remove anything that's not a string from an array.
 # Hint: Use the method "class"  "blake".class
+array = ["sarah", 1, "string time", 3, 5]
+def remove_nonstring(array)
+  array.collect do |item|
+    if item.class == string
+      item
+    end
+  end
+end
 
 # 6. Change the third letter of all strings in an array.  Your solution should work for arrays that have mixed
 # types of objects inside it.

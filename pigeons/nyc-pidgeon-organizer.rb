@@ -6,7 +6,7 @@
 
 pigeon_data = {
   :color => {
-    :purple => ["Theo", "Peter Jr.", "Lucky"],
+    :purple => ["Theo", "Peter Jr."],
     :grey => ["Theo", "Peter Jr.", "Ms .K"],
     :white => ["Queenie", "Andrew", "Ms .K", "Alex"],
     :brown => ["Queenie", "Alex"]

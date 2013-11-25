@@ -1,4 +1,5 @@
 require "awesome_print"
+require "debugger"
 # Organizing Nested Data
 
 # I have a collection of Programming Languages.  
@@ -33,24 +34,7 @@ languages = {
 
   }
 }
-
-new_languages = {}#new container
-languages.each do |style, lang|#look at style and language
-  lang.each do |name, lang_hash|#look at each lang name and its hash
-    new_languages[name] = {} unless new_languages[name]#enter each lang into the container w/ value of {}
-    lang_hash.each do |type, value|#look at type and value w/in each hash
-      new_languages[name][type] = value
-      if style == :oo
-        new_languages[name][:style] = :oo
-      elsif style == :functional
-        new_languages[name][:style] = :functional
-      end
-    end
-  end
-end
-ap new_languages
 # I would like you to reformat the nested structure to be of the following form
-
 # {
 #   :ruby => {
 #     :style => [:oo],
@@ -62,4 +46,20 @@ ap new_languages
 #   }
 #   etc etc
 # }
+
+new_languages = {}#new container
+languages.each do |style, lang|# style is oo funcitonal, lang is ruby = {} java = {} etc
+  # debugger
+  lang.each do |lang_name, type_hash|
+    # debugger
+    type_hash.each do |type, quality|
+      # debugger
+      new_languages[lang_name] ||= {}
+      new_languages[lang_name][:style] ||= []
+      new_languages[lang_name][:style] << style
+      new_languages[lang_name][type] = quality
+    end
+  end
+end
+ap new_languages
 

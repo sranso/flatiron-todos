@@ -1,7 +1,7 @@
 ########################
 # NYC PIGEON ORGANIZER #
 ########################
-
+require 'debugger'
 # Start with the following collected data on NYC pigeons.
 
 pigeon_data = {
@@ -28,41 +28,20 @@ pigeon_data = {
 # Your output should match the hash below:
 
 new_pigeon_data = {}
-#get name of each pigeon, add them as a key with a value of {} to new_pigeon_data
-pigeon_data.each do |key, value| # key = color gender lives, value = {purple grey white brown} etc
-  value.each do |attribute, name_array| # attribute = purple, name_array = ["Theo", "Peter Jr.", "Lucky"] etc
-    name_array.each do |name|
-      new_pigeon_data[name] = {} unless new_pigeon_data[name]
-      new_pigeon_data[name][:color] = [] unless new_pigeon_data[name][:color]
-      if key == :color
-        new_pigeon_data[name][key] << attribute
+pigeon_data.each do |attribute, attribute_hash| # attribute = color gender lives, attribute_hash = purple {} grey {} etc
+  attribute_hash.each do |characteristic, pigeons| # pigeons = ["Alex", "Theo", "Peter Jr.", "Andrew", "Lucky"], ["Queenie", "Ms .K"]
+    pigeons.each do |pigeon_name|
+      new_pigeon_data[pigeon_name] = {} unless new_pigeon_data[pigeon_name]
+      new_pigeon_data[pigeon_name][:color] = [] unless new_pigeon_data[pigeon_name][:color]
+      if attribute == :color
+        new_pigeon_data[pigeon_name][:color] << characteristic
       else
-        new_pigeon_data[name][key] = attribute
+        new_pigeon_data[pigeon_name][attribute] = characteristic
       end
+      # do work in here, at the deepest level of our iteration, how would we solve this
     end
   end
-  p new_pigeon_data
+  new_pigeon_data
 end
-
-
-# pigeon_data.each do |attribute, attribute_hash| # attribute = color gender lives, attribute_hash = purple {} grey {} etc
-#   if attribute == :gender
-#     attribute_hash.each do |maleorfemale, pigeons| # pigeons = ["Alex", "Theo", "Peter Jr.", "Andrew", "Lucky"], ["Queenie", "Ms .K"]
-#       pigeons.each do |pigeon|
-#         new_pigeon_data[pigeon] = {}
-#       end
-#     end
-#     new_pigeon_data
-#   end # new_pigeon_data = {"Alex"=>{}, "Theo"=>{}, "Peter Jr."=>{}, "Andrew"=>{}, "Lucky"=>{}, "Queenie"=>{}, "Ms .K"=>{}}
-#   attribute_hash.each do |key, value| # key = purple male subway etc, value = pigeon name array
-#     value.each do |pigeon1|
-#       if pigeon1 == new_pigeon_data[pigeon]
-#         new_pigeon_data[pigeon][attribute] = key
-#       end
-#     end
-#   end
-#   new_pigeon_data
-# end
-
-
+p new_pigeon_data
 
