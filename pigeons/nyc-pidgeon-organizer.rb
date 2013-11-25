@@ -35,7 +35,7 @@ pigeon_data.each_pair do |key, value|
   value.each_pair do |attribute, name_array|
   #looks at second pair of hashes. first time around, it's purple, []
     name_array.each do |name|
-    #looks at name array
+    #looks at name array ["Theo", "Peter Jr.", "Lucky"] etc
       new_pigeon[name] = {} unless new_pigeon[name]
       #name of bird is equal to a new, empty hash UNLESS that key/name already exists in the hash. could ALSO write it as..
         #if new_pigeon[name].nil?
