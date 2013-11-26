@@ -58,22 +58,44 @@ p starts_wa(stuff).compact
 array = ["sarah", 1, "string time", 3, 5]
 def remove_nonstring(array)
   array.collect do |item|
-    if item.class == string
+    if item.class == String
       item
     end
   end
 end
 
-# 6. Change the third letter of all strings in an array.  Your solution should work for arrays that have mixed
-# types of objects inside it.
+# 6. Change the third letter of all strings in an array.  Your solution should work for arrays 
+# that have mixed types of objects inside it.
+array = ["super duper", 2, "flower time", 55, :symbol, "purple", "po"]
+def change_third_letter(array)
+  newarray = array.collect do |item|
+    if item.class == String
+      item[2] = "$" unless item[2].nil?
+    end
+    item
+  end
+  newarray
+end
+p change_third_letter(array)
 
-# 7. Count the number of times each word appears in a string and store that data in a hash that has the word as
-# the key and the count as the value.
+# 7. Count the number of times each word appears in a string and store that data in a hash 
+# that has the word as the key and the count as the value.
+def word_count(string)
+  newstring = string.split
+  newhash = {}
+  newstring.each do |word|
+    if newhash[word]
+      newhash[word] += 1
+    else
+      newhash[word] = 1
+    end
+  end
+  newhash
+end
+string = "the flatiron school is better than general assembly"
 
-#   string = "the flatiron school is better than general assembly"
-
-# 8. Count the number of times each hash appears in the array, remove any duplicates and add a :count key to each
-# hash with the number of times it appears.
+# 8. Count the number of times each hash appears in the array, remove any duplicates and add
+# a :count key to each hash with the number of times it appears.
 #   [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
 #     becomes
 #   [{:name => "blake", :count => 2}, {:name => "ashley", :count => 1}]

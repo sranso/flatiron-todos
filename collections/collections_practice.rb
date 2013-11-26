@@ -145,15 +145,12 @@ story_joined = story_array.join(" ")
 # 2. song library
 # convert the following array of song titles
 song_titles = ["dave matthews band - tripping billies", "dave matthews band - #41", "calvin harris - some techno song", "avicii - some other dance song", "oasis - wonderwall", "oasis - champagne supernova"]
-song_titles.collect do |item|
+newarray = song_titles.collect do |item|
     item.split(" - ")
 end
-# puts song_titles
 hash = {}
-#sa = the result of lines 151-153
-sa = [["dave matthews band", "tripping billies"], ["dave matthews band", "#41"], ["calvin harris", "some techno song"], ["avicii", "some other dance song"]]
-sa.each do |songartist|
+newarray.each do |songartist|
     hash[songartist[0]] = [] unless hash[songartist[0]]
     hash[songartist[0]] << songartist[1]
 end
-# p hash
+p hash
