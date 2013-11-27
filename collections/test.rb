@@ -1,10 +1,17 @@
-stuff = ["candy", :pepper, "wall", :ball, "wacky"]
-def first_starts_wa(array)
-  array.collect do |item|
-  	if item[0..1] == "wa"
-  		item then
-  		break
-  	end
+def remove_duplicates(array)
+  new_array = []
+  array.each do |item|
+    item[:count] = 1
+    if new_array.include? item
+      new_array.each do |arrayitem|
+        arrayitem
+      end
+      item[:count] +=1
+    else
+      new_array << item
+    end
   end
+  new_array.compact
 end
-p first_starts_wa(stuff)
+array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
+p remove_duplicates(array1)

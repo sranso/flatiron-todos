@@ -94,53 +94,60 @@ def word_count(string)
 end
 string = "the flatiron school is better than general assembly"
 
-# 8. Count the number of times each hash appears in the array, remove any duplicates and add
-# a :count key to each hash with the number of times it appears.
-#   [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
+# 8. Count the number of times each hash appears in the array, remove any duplicates and add a
+# :count key to each hash with the number of times it appears.
+array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
 #     becomes
 #   [{:name => "blake", :count => 2}, {:name => "ashley", :count => 1}]
+def remove_duplicates(array)
+  new_array = []
+  array.each do |item|
+    new_array << item unless new_array.include? item
+  end
+  new_array
+end
+def remove_duplicates(array)
+  new_array = []
+  array.each do |item|
+    item[:count] = 1
+    if new_array.include? item
+      new_array.each do |arrayitem|
+        arrayitem
+      end
+      item[:count] +=1
+    else
+      new_array << item
+    end
+  end
+  new_array.compact
+end
+array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
+p remove_duplicates(array1)
 
 # 9. Take two arrays of hashes and merge the first names and last names into a new array of hashes where each hash
 # has all information about itself.
 
-[
-       {
-        :first_name => "blake"
-    },
-       {
-        :first_name => "ashley"
-    }
-]
+array1 = [{:first_name => "blake"},
+  {:first_name => "ashley"}]
 # and
-[
-       {
-         "blake" => {
-            :awesomeness => 10,
-                 :height => "74",
-              :last_name => "johnson"
-        },
-        "ashley" => {
-            :awesomeness => 9,
-                 :height => 60,
-              :last_name => "dubs"
-        }
-    }
+array2 = [ {
+  "blake" => {:awesomeness => 10, :height => "74", :last_name => "johnson"},
+  "ashley" => {:awesomeness => 9,:height => 60, :last_name => "dubs"}
+  }
 ]
-
-# becomes
-[
-       {
-         :first_name => "blake",
-        :awesomeness => 10,
-             :height => "74",
-          :last_name => "johnson"
-    },
-       {
-         :first_name => "ashley",
-        :awesomeness => 9,
-             :height => 60,
-          :last_name => "dubs"
-    }
+# becomes one array of two hashes
+[ {
+    :first_name => "blake",
+    :awesomeness => 10,
+    :height => "74",
+    :last_name => "johnson"
+  },
+  {
+    :first_name => "ashley",
+    :awesomeness => 9,
+    :height => 60,
+    :last_name => "dubs"
+  }
 ]
 
 # 10. Return all hashes that have a value of "cool" for the :temperature key.
