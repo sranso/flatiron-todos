@@ -99,29 +99,8 @@ string = "the flatiron school is better than general assembly"
 array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
 #     becomes
 #   [{:name => "blake", :count => 2}, {:name => "ashley", :count => 1}]
-def remove_duplicates(array)
-  new_array = []
-  array.each do |item|
-    new_array << item unless new_array.include? item
-  end
-  new_array
-end
-def remove_duplicates(array)
-  new_array = []
-  array.each do |item|
-    item[:count] = 1
-    if new_array.include? item
-      new_array.each do |arrayitem|
-        arrayitem
-      end
-      item[:count] +=1
-    else
-      new_array << item
-    end
-  end
-  new_array.compact
-end
-array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
+
+
 p remove_duplicates(array1)
 
 # 9. Take two arrays of hashes and merge the first names and last names into a new array of hashes where each hash
