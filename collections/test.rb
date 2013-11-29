@@ -27,9 +27,13 @@ def bylocation(schools)
   schools.each do |key1, val1|
     val1.each do |key2, val2|
       if key2 == :location
-        newhash[val2] = {} unless newhash[val2]
+        newhash[val2] = {} unless newhash[val2] #val2 = SF or NYC
         newhash[val2][key1] = {}
         newhash
+        debugger
+      # elsif key2 == :price # newhash[NYC][flatiron][:price] = free
+      #   debugger
+      #   newhash[val2] #val2 = free or your soul #PROBLEM IS: VAL2 HERE PRODUCES A 'NIL' B/C IT'S DIFF THAN VAL2 ON LINE 30
       end
     end
   end
