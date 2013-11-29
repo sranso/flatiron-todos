@@ -172,8 +172,17 @@ end
     }
 ]
 
-# 11. Convert the nested data structure from it's current structure
+def cool(array)
+  array.each do |hash|
+    hash.each do |key, val|
+      if val == "cool"
+        hash
+      end
+    end
+  end
+end
 
+# 11. Convert the nested data structure from it's current structure
 {
   "flatiron school bk" => {
     :location => "NYC",
@@ -196,4 +205,25 @@ end
     :price => "your soul"
   }
 }
+
+{
+  "NYC" => {
+    "flatiron school bk" => {
+      :price => "free"
+    }
+    "general assembly" => {
+      :price => "too much"
+    }
+  },
+  "SF" => {
+    "some school in SF" => {
+      :price => "your soul"
+    }
+  }
+}
 # to a structure that organizes the schools by location.
+
+newhash = {}
+def 
+  
+end
