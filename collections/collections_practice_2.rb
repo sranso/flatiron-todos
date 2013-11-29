@@ -99,8 +99,22 @@ string = "the flatiron school is better than general assembly"
 array1 = [{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}]
 #     becomes
 #   [{:name => "blake", :count => 2}, {:name => "ashley", :count => 1}]
-
-
+def remove_duplicates(array)
+  new_array = []
+  array.each do |item|
+    item[:count] = 1
+    if new_array.include? item
+      new_array.map do |item2|
+        if item2 == item
+          item2[:count] +=1
+        end
+      end
+    else
+      new_array << item
+    end
+  end
+  new_array
+end
 p remove_duplicates(array1)
 
 # 9. Take two arrays of hashes and merge the first names and last names into a new array of hashes where each hash
@@ -109,8 +123,9 @@ p remove_duplicates(array1)
 array1 = [{:first_name => "blake"},
   {:first_name => "ashley"}]
 # and
-array2 = [ {
-  "blake" => {:awesomeness => 10, :height => "74", :last_name => "johnson"},
+array2 = [
+  {
+    "blake" => {:awesomeness => 10, :height => "74", :last_name => "johnson"},
   "ashley" => {:awesomeness => 9,:height => 60, :last_name => "dubs"}
   }
 ]
@@ -128,6 +143,22 @@ array2 = [ {
     :last_name => "dubs"
   }
 ]
+
+def onearray(array1, array2)
+  array1.each do |hash1|
+    hash1.each do |key1, val1|
+      array2.each do |hash2|
+        hash2.each do |key2, val2|
+          if val1 == key2
+            val2.each do |key3, val3|
+              hash1[key3] = val3
+            end
+          end
+        end
+      end
+    end
+  end
+end
 
 # 10. Return all hashes that have a value of "cool" for the :temperature key.
 [

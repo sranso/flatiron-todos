@@ -12,7 +12,7 @@ describe "#" do
   it "should count the number of times each hash appears in the array" do
     expect(remove_duplicates()).to eq()
   end
-  it "should remove any duplicates" do
+  it "should remove any duplicates" do #passes
     expect(remove_duplicates([{:name => "blake"}, {:name => "blake"}, {:name => "ashley"}])).to eq([{:name => "blake"}, {:name => "ashley"}])
   end
   it "should compute this hash to equal this" do
