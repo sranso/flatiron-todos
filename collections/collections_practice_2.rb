@@ -217,7 +217,16 @@ end
 }
 # to a structure that organizes the schools by location.
 
-newhash = {}
-def 
-  
+def by_location(school_hash)
+  location_hash = {}
+  school_hash.each do |school_name, school_info|
+    location = school_info[:location] #NYC etc
+    price = school_info[:price] #your soul etc
+    if not location_hash.has_key?(location)
+      location_hash[location] = []
+    end
+    location_hash[location] << {:name => school_name, :price => price}
+  end
+  location_hash
 end
+p by_location(schools)
