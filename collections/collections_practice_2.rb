@@ -145,20 +145,15 @@ array2 = [
 ]
 
 def onearray(array1, array2)
-  array1.each do |hash1|
-    hash1.each do |key1, val1|
-      array2.each do |hash2|
-        hash2.each do |key2, val2|
-          if val1 == key2
-            val2.each do |key3, val3|
-              hash1[key3] = val3
-            end
-          end
-        end
+  array1.each do |first_name_hash| #{:first_name => "blake"}
+    array2.each do |hash2| #{}
+      hash2.each do |name, qualities|
+        first_name_hash.merge!(qualities) if first_name_hash.values.include?(name)
       end
     end
   end
 end
+# p onearray(array1, array2)
 
 # 10. Return all hashes that have a value of "cool" for the :temperature key.
 [
