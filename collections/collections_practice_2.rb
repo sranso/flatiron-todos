@@ -170,10 +170,9 @@ end
 def cool(array)
   array.each do |hash|
     hash.each do |key, val|
-      if val == "cool"
-        hash
-      end
+      hash if val == "cool"
     end
+    hash
   end
 end
 
