@@ -38,6 +38,7 @@ end
 # 3. Modify your program to only do the substitutions if the tweet is longer
 #  than 140 characters
 def shorten_tweets_over_140(tweets, substitutes)
+  # collection = []
   tweets.map do |tweet|
     if tweet.size > 140
       tweet.split(" ").map do |word|
@@ -52,4 +53,21 @@ end
 
 # 4. Modify your program to truncate the tweet to 140 characters if it's still
 #  too long after substitution
-
+def truncate_tweets_over_140(tweets, substitutes)
+  tweets.map do |tweet|
+    if tweet.size > 140
+      new_tweet = tweet.split(" ").map do |word|
+        word = substitutes[word] || word
+      end.join(" ")
+      # debugger
+      if new_tweet.size > 140
+        new_tweet[0..137] + "..."
+      else
+        new_tweet
+      end
+    else
+      tweet
+    end
+  end
+end
+puts truncate_tweets_over_140(tweets, substitutes)
