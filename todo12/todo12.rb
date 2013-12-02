@@ -12,9 +12,11 @@ substitutes = {
   'and' => '&'
 }
 def shorten_tweet(tweet, substitutes)
-  tweet.split(" ").map do |word|
-    word = substitutes[word] || word
-  end.join(" ")
+  new_tweet = []
+  tweet.split(" ").each do |word|
+    substitutes[word].nil? ? new_tweet << word : new_tweet << substitutes[word]
+  end
+  new_tweet.join(" ")
 end
 string = "Hey guys, can anyone teach me how to be cool? I really want to be the best at everything, you know what I mean? Tweeting is super fun you guys!!!!"
 p shorten_tweet(string, substitutes)
