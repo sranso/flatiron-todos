@@ -12,12 +12,12 @@ substitutes = {
   'and' => '&'
 }
 def shorten_tweet(tweet, substitutes)
-  string.split(" ").map do |word|
+  tweet.split(" ").map do |word|
     word = substitutes[word] || word
   end.join(" ")
 end
-# string = "Hey guys, can anyone teach me how to be cool? I really want to be the best at everything, you know what I mean? Tweeting is super fun you guys!!!!"
-# p shorten_string(string, substitutes)
+string = "Hey guys, can anyone teach me how to be cool? I really want to be the best at everything, you know what I mean? Tweeting is super fun you guys!!!!"
+p shorten_tweet(string, substitutes)
 
 # 2. Write a method that iterates over the list of tweets, shortens them, and
 # prints the results to the screen
@@ -59,7 +59,6 @@ def truncate_tweets_over_140(tweets, substitutes)
       new_tweet = tweet.split(" ").map do |word|
         word = substitutes[word] || word
       end.join(" ")
-      # debugger
       if new_tweet.size > 140
         new_tweet[0..137] + "..."
       else
@@ -70,4 +69,4 @@ def truncate_tweets_over_140(tweets, substitutes)
     end
   end
 end
-puts truncate_tweets_over_140(tweets, substitutes)
+# puts truncate_tweets_over_140(tweets, substitutes)
