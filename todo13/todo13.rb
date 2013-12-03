@@ -1,32 +1,38 @@
 require 'debugger'
 class Array
-
   def version_sort(array_to_sort)
+    #get data from files
     array = []
     array_to_sort.each do |item|
       array << (/.*\-(\d*\.*\d*\w*\.*\d*\.*)ext/).match(item)[1]
     end
-    sorted_array = array.sort # ["1", "1.10.2", "1.11", "1.3", "1.50", "1.8.7", "1.9.3", "10", "10.1", "100", "13", "2.0", "2.0.0", "2.0.1", "2.007", "2.01", "2.012b", "2.01a", "2.0a", "2.0b", "2.1", "25", "6"]
 
-    # Arrange by digits before first decimal
-    ordered_array = []
-    101.times do |i|
-      next if i == 0
-      subarray = [] 
-      sorted_array.each do |item|
-        subarray << item if (/^#{i}\..*/).match(item)
-      end
-      ordered_array << subarray unless subarray.empty?
+    #split items into arrays of arrays
+    array_of_arrays = []
+    array.each do |item|
+      array_of_arrays << item.split(".")
     end
-  end
 
-  def rule1(ordered_array)
-    ordered_array.each do |array|
-      array.each do |item|
-        debugger
-        ().match(item)
+    #make all arrays the same size
+    array_of_arrays.select do |array|
+      while array.size < 3
+        array << ""
       end
     end
+
+    sorted_array = array_of_arrays.sort do |a,b|
+#[["1", "", "", ""], ["1", "10", "2", ""], ["1", "11", "", ""], ["1", "3", "", ""], ["1", "50", "", ""], ["1", "8", "7", ""], ["1", "9", "3", ""], ["10", "", "", ""], ["10", "1", "", ""], ["100", "", "", ""], ["13", "", "", ""], ["2", "0", "", ""], ["2", "0", "0", ""], ["2", "0", "1", ""], ["2", "007", "", ""], ["2", "01", "", ""], ["2", "012b", "", ""], ["2", "01a", "", ""], ["2", "0a", "", ""], ["2", "0b", "", ""], ["2", "1", "", ""], ["25", "", "", ""], ["6", "", "", ""]]
+      if (a[0] <=> b[0]) == 0
+        if (a[1] <=> b[1]) == 0
+          a[2] <=> b[2]
+        else
+          a[0] <=> b[0]
+        end
+      else
+        a[1] <=> b[1]
+      end
+    end
+    p sorted_array
   end
 
 end
@@ -59,13 +65,6 @@ filenames = [
 
 test = Array.new
 test.version_sort(filenames)
-test.rule1()
-# ["1.", "1.10.2.", "1.11.", "1.3.", "1.50.", "1.8.7.", "1.9.3."]
-# [1., 1.3, 1.8.7, 1.9.3, 1.10.2, 1.11, 1.50]
-
-# a number followed by a dot followed by nothing
-# a number followed by a dot and followed by a number and either followed by a dot and anything else or nothing
-# a number followed by a dot followed by two numbers and either followed by a dot or nothing
 
 # version_sorted_filenames = [
 #   "foo-1.ext",
@@ -93,6 +92,5 @@ test.rule1()
 #   "foo-100.ext",
 # ]
 # assert_equal filenames.version_sort, version_sorted_filenames
-# i want to build up a sorted array, as i go
-# as soon as part of the list i feel like is sorted, i want to put it in some array, delete it from teh working set
+
 
