@@ -1,71 +1,34 @@
 require 'debugger'
 class Array
+
   def version_sort(array_to_sort)
-    holder_array = []
+    array = []
     array_to_sort.each do |item|
-      holder_array << (/.*\-(\d*\.*\d*\w*\.*\d*\.*)ext/).match(item)
-      # holder_array << (/.*\-(\d*\.*\d*\w*\.*\d*)\.ext/).match(item)
+      array << (/.*\-(\d*\.*\d*\w*\.*\d*\.*)ext/).match(item)[1]
     end
-    sort_first = []
-    holder_array.each do |item|
-      sort_first << item[1]
-    end
-    sort_second = sort_first.sort # ["1", "1.10.2", "1.11", "1.3", "1.50", "1.8.7", "1.9.3", "10", "10.1", "100", "13", "2.0", "2.0.0", "2.0.1", "2.007", "2.01", "2.012b", "2.01a", "2.0a", "2.0b", "2.1", "25", "6"]
-    
+    sorted_array = array.sort # ["1", "1.10.2", "1.11", "1.3", "1.50", "1.8.7", "1.9.3", "10", "10.1", "100", "13", "2.0", "2.0.0", "2.0.1", "2.007", "2.01", "2.012b", "2.01a", "2.0a", "2.0b", "2.1", "25", "6"]
+
     # Arrange by digits before first decimal
-    all_ones = [] # 1.
-    sort_second.each do |item|
-      all_ones << item[0..-1] if (/^1\.\.*/).match(item[0..-1])
-    end # ["1.10.2", "1.11", "1.3", "1.50", "1.8.7", "1.9.3"]
-
-    all_ones_1 = []
-    all_ones.each do |item|
-      all_ones_1 << item[2..-1]
+    ordered_array = []
+    101.times do |i|
+      next if i == 0
+      subarray = [] 
+      sorted_array.each do |item|
+        subarray << item if (/^#{i}\..*/).match(item)
+      end
+      ordered_array << subarray unless subarray.empty?
     end
-    puts all_ones_1.sort
-
-    all_twos = [] # 2.
-    sort_second.each do |item|
-      all_twos << item[0..-1] if (/^2\.\.*/).match(item[0..-1])
-    end # ["2.0", "2.0.0", "2.0.1", "2.007", "2.01", "2.012b", "2.01a", "2.0a", "2.0b", "2.1"]
-    
-    all_six = [] # 6.
-    sort_second.each do |item|
-      all_six << item[0..-1] if (/^6\.\.*/).match(item[0..-1])
-    end # ["6."]
-    
-    all_tens = [] # 10.
-    sort_second.each do |item|
-      all_tens << item[0..-1] if (/^10\.\.*/).match(item[0..-1])
-    end
-    
-    all_hundreds = []
-    sort_second.each do |item|
-      all_hundreds << item[0..-1] if (/^100\.\.*/).match(item[0..-1])
-    end
-    
-    all_thirteenss = []
-    sort_second.each do |item|
-      all_thirteenss << item[0..-1] if (/^13\.\.*/).match(item[0..-1])
-    end
-
-    all_twentyfives = []
-    sort_second.each do |item|
-      all_twentyfives << item[0..-1] if (/^25\.\.*/).match(item[0..-1])
-    end
-    
-    # =====
-    # holder_array
-    # sorted_array_singledigits = []
-    # sorted_array_manydigits = []
-    # holder_array.each do |item_sort|
-    #   # puts item_sort[1]
-    #   sorted_array_singledigits << item_sort[1] if (/^\d\.|^\d$/).match(item_sort[1])
-    #   sorted_array_manydigits << item_sort[1] if (/^\d{2}|^\d{3}\.*/).match(item_sort[1])
-    # end
-    # puts (sorted_array_singledigits.sort).concat(sorted_array_manydigits.sort)
-    # =====
   end
+
+  def rule1(ordered_array)
+    ordered_array.each do |array|
+      array.each do |item|
+        debugger
+        ().match(item)
+      end
+    end
+  end
+
 end
 
 filenames = [
@@ -96,6 +59,14 @@ filenames = [
 
 test = Array.new
 test.version_sort(filenames)
+test.rule1()
+# ["1.", "1.10.2.", "1.11.", "1.3.", "1.50.", "1.8.7.", "1.9.3."]
+# [1., 1.3, 1.8.7, 1.9.3, 1.10.2, 1.11, 1.50]
+
+# a number followed by a dot followed by nothing
+# a number followed by a dot and followed by a number and either followed by a dot and anything else or nothing
+# a number followed by a dot followed by two numbers and either followed by a dot or nothing
+
 # version_sorted_filenames = [
 #   "foo-1.ext",
 #   "foo-1.3.ext",
@@ -122,4 +93,6 @@ test.version_sort(filenames)
 #   "foo-100.ext",
 # ]
 # assert_equal filenames.version_sort, version_sorted_filenames
+# i want to build up a sorted array, as i go
+# as soon as part of the list i feel like is sorted, i want to put it in some array, delete it from teh working set
 
