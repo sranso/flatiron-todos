@@ -62,7 +62,7 @@ def truncate_tweets_over_140(tweets, substitutes)
         word = substitutes[word] || word
       end.join(" ")
       if new_tweet.size > 140
-        new_tweet[0..137] + "..."
+        new_tweet[0..136] + "..."
       else
         new_tweet
       end
