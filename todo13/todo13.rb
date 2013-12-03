@@ -1,9 +1,9 @@
 require 'debugger'
 class Array
 
-  def initialize
+  # def initialize(orig_array)
     
-  end
+  # end
 
   def version_sort(orig_array)
     array_to_sort = []
@@ -11,17 +11,21 @@ class Array
 
     #get data from files
     orig_array.each do |item|
-      array_to_sort << (/foo-(\d*)\.{0,1}(\d*[a-z]{0,1})\.{0,1}(\d*)\.ext/).match(item)
+      array_to_sort << (/foo-(\d*)\.{0,1}(\d*)\.{0,1}(\d*)([a-z]{0,1})\.ext/).match(item)
     end
 
     #sort array_to_sort
     sorted = array_to_sort.sort do |array1, array2|
-      if (array1[1].to_i <=> array2[1].to_i) == 0
-      if (array1[2].to_i <=> array2[2].to_i) == 0
-        (array1[3].to_i <=> array2[3].to_i)
-      else
-        (array1[2].to_i <=> array2[2].to_i)
-      end
+      if (array1[1].to_int <=> array2[1].to_int) == 0
+        if (array1[2].to_int <=> array2[2].to_int) == 0
+          if (array1[3].to_int <=> array2[3].to_int) == 0
+            (array1[4] <=> array2[4])
+          else
+            (array1[3].to_i <=> array2[3].to_i)
+          end
+        else
+          (array1[2].to_i <=> array2[2].to_i)
+        end
       else
         (array1[1].to_i <=> array2[1].to_i)
       end
@@ -33,11 +37,14 @@ class Array
     end
 
     #return new array
-    p new_array
+    new_array
   end
+end
 
-
-
+class String
+  def to_int
+    self.to_i unless self == ""
+  end
 end
 
 filenames = [
@@ -94,6 +101,5 @@ test.version_sort(filenames)
 #   "foo-25.ext",
 #   "foo-100.ext",
 # ]
-# assert_equal filenames.version_sort, version_sorted_filenames
 
-
+filenames.version_sort.should eq(version_sorted_filenames)
