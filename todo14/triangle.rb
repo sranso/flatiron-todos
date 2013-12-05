@@ -1,6 +1,9 @@
 require "debugger"
-class Triangle < StandardError
 
+class TriangleError < StandardError
+end
+
+class Triangle
   attr_accessor :a, :b, :c
   attr_reader :a0, :a1, :a2
 
@@ -19,8 +22,13 @@ class Triangle < StandardError
   end
 
   def kind
-    # debugger
-    if @a0 == @a1 && (@a1 == @a2)
+    if @sides.inject(:+) == 0
+      raise TriangleError, "This triangle cannot exist."
+    elsif @a0 < 0 || (@a1 < 0) || (@a2 < 0)
+      raise TriangleError, "This triangle cannot exist."
+    elsif (@a1 + @a2) <= @a0
+      raise TriangleError, "This triangle cannot exist."
+    elsif @a0 == @a1 && (@a1 == @a2)
       :equilateral
     elsif @a0 == @a1 && (@a1 != @a2)
       :isosceles
@@ -28,8 +36,6 @@ class Triangle < StandardError
       :scalene
     end
   end
-
-
 
 end
 
