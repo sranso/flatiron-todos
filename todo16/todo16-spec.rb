@@ -14,7 +14,8 @@ end
 
 describe '#count' do
 
-  it 'should return a hash' do
+  it 'should return a hash that counts number of times each element 
+  appears in the array' do
     count(['cat', 'dog', 'fish', 'fish']).should eq({ 'cat' => 1, 'dog' => 1, 'fish' => 2 })
   end
 

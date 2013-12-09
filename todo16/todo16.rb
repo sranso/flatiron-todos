@@ -14,11 +14,7 @@ test = ['cat', 'dog', 'fish', 'fish']
 def count(array)
   hash = {}
   array.each do |item|
-    if hash[item]
-      hash[item] = hash[item] + 1
-    else
-      hash[item] = 1
-    end 
+    hash[item] = array.count(item)
   end
   hash
 end
