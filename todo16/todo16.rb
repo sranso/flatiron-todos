@@ -11,6 +11,7 @@
 
 test = ['cat', 'dog', 'fish', 'fish']
 test2 = 34
+test3 = {:hey => "you", :so => "what"}
 
 def count(array)
   unless array.respond_to? :count
@@ -24,4 +25,4 @@ def count(array)
   hash
 end
 
-# p count(test2)
+p count(test3)
