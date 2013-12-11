@@ -8,8 +8,8 @@ def run
   while command.downcase != "exit" do
     if ["help", "list", "u2", "talking heads", "huey lewis and the news"].include? command.downcase
       # debugger
+      run_command(command) unless command.downcase == "exit"
       command = get_command
-      run_command(command) # unless command.downcase == "exit"
     else
       puts "I did not understand '#{command}'!"
       puts "Enter a command to continue. Type 'help' for a list of commands."

@@ -1,3 +1,4 @@
+require_relative './song_library.rb'
 def jukebox(command)
   if command.downcase == "list"
     list_library
