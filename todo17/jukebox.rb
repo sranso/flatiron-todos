@@ -1,4 +1,5 @@
 require_relative './song_library.rb'
+require 'debugger'
 def jukebox(command)
   if command.downcase == "list"
     list_library
@@ -10,7 +11,7 @@ end
 def list_library
   lib = full_library
   lib.each do |artist, album_hash|
-    puts list_artist(artist, album_hash)
+    puts list_artist(artist, album_hash) # list_artist doesn't know what artist is
   end
 end
 
@@ -27,6 +28,7 @@ def parse_artist(command, lib)
   else
     lib.each do |artist, hash|
       if command.downcase == artist.to_s.gsub("_"," ").downcase
+        # debugger
         puts list_artist(artist, lib)
         parsed = true
         break
@@ -58,7 +60,7 @@ def list_artist(artist, album_hash)
    artist_list = "\n---------------\n"
    artist_list += "#{artist}:\n"
    artist_list += "---------------"
-   album_hash[:albums].each do |album_name, songs_hash|
+   album_hash[artist][:albums].each do |album_name, songs_hash|
      artist_list += "\n#{album_name}:\n\t"
      artist_list += songs_hash[:songs].join("\n\t")
    end
