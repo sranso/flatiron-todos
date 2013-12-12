@@ -7,15 +7,20 @@ def run
   command = get_command
   while command.downcase != "exit" do
     if ["help", "list", "u2", "talking heads", "huey lewis and the news"].include? command.downcase
-      # debugger
       run_command(command) unless command.downcase == "exit"
       command = get_command
     else
       puts "I did not understand '#{command}'!"
-      puts "Enter a command to continue. Type 'help' for a list of commands."
+      enter_command_msg
       command = get_command
     end
   end
+end
+
+def enter_command_msg
+  msg = "\n"
+  msg += "Enter a command to continue. Type 'help' for a list of commands.\n"
+  puts msg
 end
 
 def get_command
@@ -28,6 +33,7 @@ def run_command(command)
     show_help
   else
     jukebox(command)
+    enter_command_msg
   end
 end
 
@@ -38,6 +44,7 @@ def show_help
   help += "or you can enter an artist's name to show that artist's songs\n"
   help += "or you can enter an artist's name to show that artist's songs\n"
   puts help
+  enter_command_msg
 end
 
 run
