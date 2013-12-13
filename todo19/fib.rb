@@ -14,5 +14,3 @@ def fibo_finder(n)
   puts array 
   array[n]
 end
-
-# p fibo_finder(10)
