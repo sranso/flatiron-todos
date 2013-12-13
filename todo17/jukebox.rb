@@ -1,5 +1,6 @@
 require_relative './song_library.rb'
 require 'debugger'
+
 def jukebox(command)
   if @command.downcase == "list"
     list_library
