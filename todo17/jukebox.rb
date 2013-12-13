@@ -11,7 +11,7 @@ end
 def list_library
   lib = full_library
   lib.each do |artist, album_hash|
-    puts list_artist(artist, album_hash) # list_artist doesn't know what artist is
+    puts list_artist(artist, album_hash)
   end
 end
 
@@ -28,7 +28,6 @@ def parse_artist(command, lib)
   else
     lib.each do |artist, hash|
       if command.downcase == artist.to_s.gsub("_"," ").downcase
-        # debugger
         puts list_artist(artist, lib)
         parsed = true
         break
@@ -42,12 +41,10 @@ def play_song(command, lib)
   lib.each do |artist, hash|
     hash.each do |album_name, albums_hash|
       albums_hash.each do |album, songs_hash|
-        songs_hash.each do |songs|
-          songs.each do |song|
-            if song.downcase == command.downcase
-              puts "Now Playing: #{artist[command].strip}: #{album} - #{song}\n\n"
-              return true
-            end
+        songs_hash[:songs].each do |song|
+          if song.downcase == command.downcase
+            puts "Now Playing: #{artist}: #{album} - #{song}\n\n"
+            return true
           end
         end
       end
@@ -60,10 +57,17 @@ def list_artist(artist, album_hash)
    artist_list = "\n---------------\n"
    artist_list += "#{artist}:\n"
    artist_list += "---------------"
-   album_hash[artist][:albums].each do |album_name, songs_hash|
-     artist_list += "\n#{album_name}:\n\t"
-     artist_list += songs_hash[:songs].join("\n\t")
-   end
+   # if command == "list" # ask Nisha
+   #  album_hash[:albums].each do |album_name, songs_hash|
+   #    artist_list += "\n#{album_name}:\n\t"
+   #    artist_list += songs_hash[:songs].join("\n\t")
+   #  end
+   # else
+    album_hash[artist][:albums].each do |album_name, songs_hash|
+      artist_list += "\n#{album_name}:\n\t"
+      artist_list += songs_hash[:songs].join("\n\t")
+    end
+   # end
    artist_list
 end
 

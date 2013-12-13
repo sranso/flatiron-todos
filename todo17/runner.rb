@@ -6,7 +6,8 @@ def run
   puts "Enter a command to continue. Type 'help' for a list of commands."
   command = get_command
   while command.downcase != "exit" do
-    if ["help", "list", "u2", "talking heads", "huey lewis and the news"].include? command.downcase
+    # run_command(command)
+    if ["help", "list", "u2", "talking heads", "numb"].include? command.downcase
       run_command(command) unless command.downcase == "exit"
       command = get_command
     else
