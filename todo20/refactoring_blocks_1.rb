@@ -48,7 +48,7 @@ def pay_by_cash(order)
   pay_by(order)
 end
 
-def pay_by_store_credit(order)
+def pay_by_store_credit(order,current_user)
   pay_by(order) do |order|
     order.payment :type => :store_credit
     current_user.store_credit -= order.cost   # current_user is a method with no params (ie, the customer)    
