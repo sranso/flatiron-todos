@@ -7,10 +7,11 @@ class Birthday < ActiveRecord::Base
   end
 
   def yes_or_no?
-    if @time == "10/03/88"
-      "Yes!"
+    if /10\/03*/.match(@time)
+      age = @time[-2..-1].to_i + (100-88)
+      "Yes! You just turned #{age}!"
     else
-      "No."
+      "No. Maybe tomorrow it will be..."
     end
   end
 
