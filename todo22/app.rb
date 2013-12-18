@@ -21,6 +21,7 @@ module Name
 
     #routes
     get '/' do
+      @is_it = Birthday.new
       erb :index
     end
 
