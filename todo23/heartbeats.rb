@@ -1,7 +1,7 @@
 class Heartbeats
 
-  def initialize
-    @beats = ["bum bum", "bam bam", "dun dun", "ba ba", "ba da"]
+  def initialize(array)
+    @beats = array # ["bum bum", "bam bam", "dun dun", "ba ba", "ba da"]
   end
 
   def each
