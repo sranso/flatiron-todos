@@ -22,12 +22,12 @@ class Holiday < ActiveRecord::Base
 
   def hannukah
     @hannukah_month = 12
-    @hannukah_day = 19
+    @hannukah_day = (16..24)
     yes_or_no(@hannukah_month, @hannukah_day)
   end
 
   def yes_or_no(month, day)
-    if @this_month == month && @this_day == day
+    if @this_month == month && day === @this_day
       "Yes!"
     else
       "No."
