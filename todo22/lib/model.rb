@@ -1,41 +1,52 @@
 class Birthday < ActiveRecord::Base
 
-  attr_reader :time, :bday_month, :bday_day, :bday_year
+  attr_reader :this_month, :this_day, :this_year, :bday_month, :bday_day, :bday_year
 
-  def initialize
-    @time = Time.now.strftime("%D")
+  def initialize #(time)
+    @this_month = Time.now.month #time.month
+    @this_day = Time.now.day #time.day
+    @this_year = Time.now.year #time.year
     @bday_month = 10
     @bday_day = 03
     @bday_year = 1988
   end
 
   def yes_or_no?
-    if /10\/03*/.match(@time)
-      "Yes! You just turned #{age}!"
+    if @this_month == @bday_month && @this_day == @bday_day
+      "Yes! She just turned #{age}!"
     else
-      "No. But it will be your birthday in #{months_until_birthday} months and #{days_until_birthday} days!"
+      "No. But it will be her birthday in #{months_until_birthday} months and #{days_until_birthday} days!"
     end
   end
 
   def age
-    @time[-2..-1].to_i + (2000 - @bday_year)
+    @this_year - @bday_year
   end
 
   def months_until_birthday
-    this_month = Time.now.strftime("%m").to_i
-    if (this_month - @bday_month) > 0
-      months_until_birthday = 12 - (this_month - @bday_month)
+    if (@this_month - @bday_month) >= 0
+      @months_until_birthday = 12 - (@this_month - @bday_month)       
     else
-      months_until_birthday = (this_month - @bday_month).abs
+      @months_until_birthday = (@this_month - @bday_month).abs
+    end
+  end
+
+  def days_in_this_month
+    case @this_month
+    when 1 || 3 || 5 || 7 || 8 || 10 || 12
+      days_in_this_month = 31
+    when 2
+      days_in_this_month = 28
+    when 4 || 6 || 9 || 11
+      days_in_this_month = 30
     end
   end
 
   def days_until_birthday
-    this_day = Time.now.strftime("%d").to_i
-    if (this_day - @bday_day) > 0
-      days_until_birthday = this_day - @bday_day
+    if (@this_day - @bday_day) >= 0
+      @days_until_birthday = @this_day - @bday_day
     else
-      days_until_birthday = (this_day - @bday_day).abs
+      @days_until_birthday = (@this_day - @bday_day).abs
     end
   end
 

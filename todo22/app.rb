@@ -8,27 +8,38 @@ end
 module Name
   class App < Sinatra::Application
 
-    #configure
-    configure do
-      set :root, File.dirname(__FILE__)
-      set :public_folder, 'public'
-    end
-
-    #database
-    set :database, "sqlite3:///database.db"
-
-    #filters
-
     #routes
     get '/' do
+      # @today = get_time
       @is_it = Birthday.new
       erb :index
     end
 
-    #helpers
+    get '/pretend' do
+      @image = 'birthday'
+      @is_it = Birthday.new
+      erb :index
+    end
+
+    get '/:holiday/pretend' do
+      # @image = params[:holiday]
+      @image = 'birthday'
+      @is_it = Birthday.new
+      erb :index
+    end
+
     helpers do
-      def partial(file_name)
-        erb file_name, :layout => false
+      def get_time
+        Timezone::Configure.begin do |c|
+          c.username = 'sranso'
+        end
+
+        location = request.location # gives location of request
+        lat = location.latitude
+        long = location.longitude
+
+        timezone = Timezone::Zone.new(:latlon => [lat, long])
+        timezone.time(Time.now)
       end
     end
 
