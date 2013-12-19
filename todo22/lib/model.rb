@@ -1,21 +1,36 @@
-class Birthday < ActiveRecord::Base
-
-  attr_reader :this_month, :this_day, :this_year, :bday_month, :bday_day, :bday_year
+class Holiday < ActiveRecord::Base
+  attr_accessor :really
 
   def initialize #(time)
     @this_month = Time.now.month #time.month
     @this_day = Time.now.day #time.day
     @this_year = Time.now.year #time.year
+  end
+
+  def birthday
     @bday_month = 10
     @bday_day = 03
     @bday_year = 1988
+    yes_or_no(@bday_month, @bday_day)
   end
 
-  def yes_or_no?
-    if @this_month == @bday_month && @this_day == @bday_day
-      "Yes! She just turned #{age}!"
+  def christmas
+    @christmas_month = 12
+    @christmas_day = 25
+    yes_or_no(@christmas_month, @christmas_day)
+  end
+
+  def hannukah
+    @hannukah_month = 12
+    @hannukah_day = 19
+    yes_or_no(@hannukah_month, @hannukah_day)
+  end
+
+  def yes_or_no(month, day)
+    if @this_month == month && @this_day == day
+      "Yes!"
     else
-      "No. But it will be her birthday in #{months_until_birthday} months and #{days_until_birthday} days!"
+      "No."
     end
   end
 

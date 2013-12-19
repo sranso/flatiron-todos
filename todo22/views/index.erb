@@ -1,8 +1,12 @@
-<h1>Is It Sarah's Birthday Yet?</h1>
-<h2><%= @is_it.yes_or_no? %></h2>
-<a href="/pretend">
+<div class="header">
+  <a href="/birthday">Sarah's Birthday</a>
+  <a href="/christmas">Christmas</a>
+  <a href="/hannukah">Hannukah</a>
+</div>
+<h1>Is It <%= params[:holiday].capitalize %> Yet?</h1>
+<h2><%= @is_it.send(params[:holiday].delete(' ')) %></h2>
+<a href="/<%= params[:holiday] %>/pretend">
   <div class="button">
     <p>Pretend It Is</p>
   </div>
 </a>
-<!-- <a href="/christmas">Christmas</a> -->

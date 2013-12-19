@@ -4,7 +4,14 @@
   color: white;
 }
 .christmas {
-
+  background-image: url("/img/christmas.gif");
+  background-size: 100%;
+  color: white;
+}
+.hannukah {
+  background-image: url("/img/hannukah.gif");
+  background-size: 100%;
+  color: white;
 }
 h1 {
   padding-top: 20%;

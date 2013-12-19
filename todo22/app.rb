@@ -11,20 +11,21 @@ module Name
     #routes
     get '/' do
       # @today = get_time
-      @is_it = Birthday.new
+      @is_it = Holiday.new
       erb :index
     end
 
-    get '/pretend' do
-      @image = 'birthday'
-      @is_it = Birthday.new
+    get '/:holiday' do
+      @is_it = Holiday.new
+      if @is_it.send(params[:holiday]) == "Yes!"
+        @image = params[:holiday]
+      end
       erb :index
     end
 
     get '/:holiday/pretend' do
-      # @image = params[:holiday]
-      @image = 'birthday'
-      @is_it = Birthday.new
+      @image = params[:holiday]
+      @is_it = Holiday.new
       erb :index
     end
 
