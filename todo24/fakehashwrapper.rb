@@ -11,24 +11,23 @@
 # I'd like to be able to find all values that have keys beginning with the letter a.
 # I'd like to be able to get all the keys in the hash in a descending alphabetized array.
 require 'debugger'
-class FakeHashWrapper
-  attr_reader :hash
 
+class FakeHashWrapper
   def initialize(hash)
     @hash = hash
   end
 
   def [](key) # find a value
-    @hash[key.to_sym]
+    hash[key.to_sym]
   end
 
   def []=(key, value) # add or change or set a key-value pair
-    @hash[key] = value
+    hash[key.to_sym] = value
   end
 
   def find_all_a # find all values that have keys beginning with the letter a
     values = []
-    @hash.keys.each do |key|
+    hash.keys.each do |key|
       if key.to_s[0] == "a"
         values << @hash[key]
       end
@@ -37,13 +36,8 @@ class FakeHashWrapper
   end
 
   def descending_keys # get all the keys in the hash in a descending alphabetized array
-    keys = []
-    @hash.keys.each do |key|
-      keys << key
-    end
-    keys.sort.reverse
+    hash.keys.sort.reverse
   end
 end
 
 a = FakeHashWrapper.new({:sarah => "lady", :kate => "another lady", :a => "test"})
-
