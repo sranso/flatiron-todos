@@ -12,25 +12,33 @@
 # I'd like to be able to get all the keys in the hash in a descending alphabetized array.
 require 'debugger'
 class FakeHashWrapper
+  attr_reader :hash
 
-  def initialize(*hash)
+  def initialize(hash)
     @hash = hash
   end
 
-  def [](key)
-    @hash.each do |hash_item|
-      hash_item[key.to_sym]
-    end
+  def [](key) # find a value
+    @hash[key.to_sym]
   end
 
-  def [](key)=(value)
-    @hash.each do |hash_item|
-      hash_item[key.to_sym] = value
-    end
+  def []=(key, value) # add or change or set a key-value pair
+    @hash[key] = value
   end
 
-
+  def find_all_a # find all values that have keys beginning with the letter a
+    values = []
+    # keys = @hash.keys
+    @hash.keys.each do |key|
+      if key.to_s[0] == "a"
+        values << @hash[key]
+      end
+    end
+    values
+  end
 end
 
-a = FakeHashWrapper.new({:sarah => "lady", :kate => "another lady"})
-p a["sarah"]
+a = FakeHashWrapper.new({:sarah => "lady", :kate => "another lady", :a => "test"})
+# p a["sarah"]
+p a.find_all_a
+
