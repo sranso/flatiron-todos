@@ -28,7 +28,6 @@ class FakeHashWrapper
 
   def find_all_a # find all values that have keys beginning with the letter a
     values = []
-    # keys = @hash.keys
     @hash.keys.each do |key|
       if key.to_s[0] == "a"
         values << @hash[key]
@@ -36,9 +35,15 @@ class FakeHashWrapper
     end
     values
   end
+
+  def descending_keys # get all the keys in the hash in a descending alphabetized array
+    keys = []
+    @hash.keys.each do |key|
+      keys << key
+    end
+    keys.sort.reverse
+  end
 end
 
 a = FakeHashWrapper.new({:sarah => "lady", :kate => "another lady", :a => "test"})
-# p a["sarah"]
-p a.find_all_a
 
