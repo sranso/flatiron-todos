@@ -6,4 +6,4 @@ def even_sum(arr)
   arr.each_with_object([]) { |i, a| i.length % 2 == 0 ? a << i.reverse : next }
 end
 
-p even_sum(["cat", "dog", "bird", "fish"]) #=> ["drib", "hsif"]
+# even_sum(["cat", "dog", "bird", "fish"]) #=> ["drib", "hsif"]
