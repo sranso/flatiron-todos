@@ -1,9 +1,9 @@
-Instructions:
-Each with object works much like inject. Use each_with_object to return an array containing one reversed string for each string that has an even number of characters.
+# Instructions:
+# Each with object works much like inject. Use each_with_object to return an array containing one reversed string for each string that has an even number of characters.
 
-Code:
+# Code:
 def even_sum(arr)
-  arr.each_with_object___
+  arr.each_with_object([]) { |i, a| i.length % 2 == 0 ? a << i.reverse : next }
 end
 
-even_sum(["cat", "dog", "bird", "fish"]) #=> ["drib", "hsif"]
+p even_sum(["cat", "dog", "bird", "fish"]) #=> ["drib", "hsif"]
