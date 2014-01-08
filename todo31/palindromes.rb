@@ -19,6 +19,10 @@ class String
       end
       counter += 1
     end
+    winner(pali)
+  end
+
+  def winner(pali)
     winner = "a"
     pali.each do |contestant|
       winner = contestant if contestant.length > winner.length
