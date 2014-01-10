@@ -4,8 +4,8 @@ require 'debugger'
 class Hash
   def keys_of(*args)
     ans = []
-    args.each do |arg|
-      self.each do |k, v|
+    self.each do |k, v|
+      args.each do |arg|
         ans << k if v == arg
       end
     end

@@ -10,7 +10,7 @@ describe 'keys_of' do
   end
 
   it 'should return these values ex 3' do
-    expect ({a: 1, b: 2, c: 3, d: 1}).keys_of(1, 2).should eq([:a, :d, :b])
+    expect ({a: 1, b: 2, c: 3, d: 1}).keys_of(1, 2).should eq([:a, :b, :d])
   end
 
 end
