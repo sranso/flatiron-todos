@@ -11,7 +11,6 @@ class Array
       sub_array.each do |sub_array_item|
         # sub_array_item = :a
         new_array.each do |new_sub_array| # new_array = [[1], [2], [3]], new_sub_array = [1]
-          # debugger
           new_sub_array << sub_array_item if new_array.index(new_sub_array) == sub_array.index(sub_array_item)
         end
       end
