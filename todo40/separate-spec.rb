@@ -13,4 +13,8 @@ describe 'separate_with_comma' do
     expect separate_with_comma(10000).should eq("10,000")
   end
 
+  it 'should return these values to' do
+    expect separate_with_comma(1000000000).should eq("1,000,000,000")
+  end
+
 end
