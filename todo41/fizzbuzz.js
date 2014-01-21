@@ -12,4 +12,4 @@ function fizzbuzz() {
     else { console.log (num); }
   };
 }
-fizzbuzz(num);
+fizzbuzz();
