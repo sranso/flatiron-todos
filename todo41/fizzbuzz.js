@@ -1,6 +1,5 @@
-function fizzbuzz(num) {
-  for (var i = 0; i < num.length; i++) {
-    num[i]
+function fizzbuzz() {
+  for (var num = 0; num < 100; num++) {
     if (num % 15 == 0) {
       console.log("Fizz Buzz");
     }
@@ -13,3 +12,4 @@ function fizzbuzz(num) {
     else { console.log (num); }
   };
 }
+fizzbuzz(num);
