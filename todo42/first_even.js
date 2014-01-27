@@ -5,7 +5,7 @@
 function first_even(items) {
   for (var i = 0; i < items.length; i++) {
     if (items[i] % 2 == 0) {
-      return items[i]
+      return items[i];
     };
   };
 };
